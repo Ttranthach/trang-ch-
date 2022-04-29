@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page Title</title>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    </head>
+    <body>
+    
+    <div id="app">
+        <h1>Color Codes of All Programming Languages that Avialabe</h1>
+        <section v-for="(value,key) in count">
+            
+        <span> {{key}} </span>
+        
+        <span v-bind:style="'background :' + value.color + '; padding : 5px 15px; border-radius: 50px;'">{{value.color}}
+    
+        </span>
+            
+        </section>
+        
+        
+    </div>
+    
+    <style>
+      *{
+    box-sizing: border-box ;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+
+img{
+    width: 100%;
+    display: block;
+}
+
+h1{
+    font-variant: small-caps ;
+    border-left: 1rem solid purple;
+    padding-left: 3rem;
+}
+
+p{
+    color: tomato ;
+    font-weight: bolder ;
+    font-size: 1.5rem;
+    text-align: center ;
+    padding: 0.5rem auto;
+}
+
+section{
+ display: block;
+ margin: 1rem;
+ padding: 0.5rem;
+ border: 1px solid aqua;
+ 
+}
+
+section span{
+    display: inline-block ;
+    width: 49%;
+}
+    </style>
+    <script>
+      onload = function (){
+    
+    url = "https://raw.githubusercontent.com/ozh/github-colors/master/colors.json";
+    
+    var vm = new Vue({
+        el : "#app",
+        data: {
+            count : {}
+        },
+        methods :{
+            call : function (t){
+                return "Hi" ;
+            }
+        },
+        mounted : function  (){
+            
+            
+            fetch(url).then((res)=>{
+                return res.json();
+            }).then((data)=>{
+                
+                vm.count = data;
+                
+            });
+            
+            
+        }
+    });
+    
+    
+}
+    </script>
+        
+    </body>
+</html>
